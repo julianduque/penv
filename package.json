@@ -1,6 +1,6 @@
 {
   "name": "penv",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A package.json enviroment manager",
   "author": "Julian Duque <julianduquej@gmail.com>",
   "repository" : {
