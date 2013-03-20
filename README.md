@@ -31,17 +31,17 @@ Define a penv-{env}.json file with the customized properties
   }
 }
 ```
- 
+
 ### penv-dev.json
 
 ```
 {
   "name": "app-dev"
-  "subdomain": "app-dev"
+  "subdomain": "myapp-dev"
 }
 ```
 
-Then run 
+Then run
 
 ```
 $ penv dev
