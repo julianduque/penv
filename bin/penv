@@ -1,0 +1,112 @@
+#!/usr/bin/env node
+var fs = require('fs'),
+    utile = require('utile'),
+    async = utile.async,
+    colors = require('colors');
+
+
+//
+// Get the environment, default to `prod`
+//
+var env = process.argv[2] || 'prod';
+
+//
+// Default names
+//
+var originalFile = 'package.json',
+    customFile = 'penv-' + env + '.json',
+    backupFile = '.' + originalFile;
+
+//
+// Workflow
+//
+async.waterfall([
+  loadPackageJson,
+  loadCustomFile,
+  createBackup,
+  writePackageJson
+], done);
+
+
+//
+// Load and parse package.json file
+//
+function loadPackageJson (next) {
+  fs.readFile(originalFile, 'utf-8', function (err, file) {
+    if (err) {
+      return next('error: '.red + originalFile.grey + ' not found'.white);
+    }
+
+    var original;
+    try {
+      original = JSON.parse(file);
+    } catch (e) {
+      return next('error: '.red + ' failed to parse '.white + originalFile.grey);
+    }
+
+    next(null, original);
+  });
+}
+
+//
+// Load and parse custom file
+//
+function loadCustomFile (original, next) {
+  fs.readFile(customFile, function (err, file) {
+    if (err) {
+      return next('error: '.red + customFile.grey + ' not found'.white);
+    }
+
+    var custom;
+    try {
+      custom = JSON.parse(file);
+    } catch (e) {
+      return next('error: '.red + ' failed to parse '.white + customFile.grey);
+    }
+
+    utile.mixin(original, custom);
+    next(null, original);
+  });
+}
+
+//
+// Create backup if not exist
+//
+function createBackup (original, next) {
+  fs.stat(backupFile, function (err, stat) {
+    if (err) {
+      fs.rename(originalFile, backupFile, function (err) {
+        if (err) {
+          return next('error: '.red + ' backup failed'.white);
+        }
+        next(null, original);
+      });
+    } else {
+      next(null, original);
+    }
+  });
+}
+
+//
+// Write the custom package.json
+//
+function writePackageJson (original, next) {
+  fs.writeFile(originalFile, JSON.stringify(original, null, 2), function (err) {
+    if (err) {
+      return next('error: '.red + ' failed to write '.white + originalFile.grey);
+    }
+    next(null);
+  });
+}
+
+
+//
+// Done!
+//
+function done (err) {
+  if(err) {
+    return console.log(err);
+  }
+
+  console.log('success: '.green + ' customized ' + originalFile.grey + ' created');
+}

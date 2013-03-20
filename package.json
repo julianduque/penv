@@ -1,0 +1,14 @@
+{
+  "name": "penv",
+  "version": "0.0.1",
+  "description": "A package.json enviroment manager",
+  "repository": "",
+  "author": "Julian Duque <julianduquej@gmail.com>",
+  "bin": "./bin/penv",
+  "main": "./bin/penv",
+  "license": "MIT",
+  "dependencies": {
+    "utile": "~0.2.0",
+    "colors": "~0.6.0-1"
+  }
+}
