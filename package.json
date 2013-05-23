@@ -1,8 +1,9 @@
 {
   "name": "penv",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "A package.json enviroment manager",
   "author": "Julian Duque <julianduquej@gmail.com>",
+  "preferGlobal": true,
   "repository" : {
     "type" : "git",
     "url" : "https://github.com/julianduque/penv"
@@ -10,8 +11,17 @@
   "bin": "./bin/penv",
   "main": "./bin/penv",
   "license": "MIT",
+  "scripts": {
+    "test": "make test"
+  },
   "dependencies": {
     "utile": "~0.2.0",
-    "colors": "~0.6.0-1"
+    "colors": "~0.6.0-1",
+    "commander": "~1.1.1"
+  },
+  "devDependencies": {
+    "mocha": "~1.9.0",
+    "chai": "~1.6.0",
+    "rimraf": "~2.1.4"
   }
 }
