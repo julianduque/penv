@@ -3,6 +3,16 @@
   "version": "0.1.0",
   "description": "A package.json enviroment manager",
   "author": "Julian Duque <julianduquej@gmail.com>",
+  "contributors": [
+    {
+      "name": "Julian Duque",
+      "email": "julianduquej@gmail.com"
+    },
+    {
+      "name": "Jarid Margolin",
+      "email": "jaridmargolin@gmail.com"
+    }
+  ],
   "preferGlobal": true,
   "repository" : {
     "type" : "git",
