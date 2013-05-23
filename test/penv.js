@@ -1,73 +1,78 @@
+/*
+ * penv.js test: tests for penv.js
+ *
+ * (C) 2013 Julián Duque
+ * MIT LICENCE
+ *
+ */ 
+var should = require('chai').should(),
+  	assert = require('chai').assert,
+  	rimraf = require('rimraf'),
+    penv   = require('../lib/penv'),
+  	path   = require('path'),
+  	fs     = require('fs');
+
 //
-// Penv Tests
+// Test Vars
 //
-var penv = require('../lib/penv'),
-	should = require('chai').should(),
-	assert = require('chai').assert,
-	rimraf = require('rimraf'),
-	path = require('path'),
-	fs = require('fs');
+var fixturesRoot = path.join(__dirname, 'fixtures'),
+    testRoot = path.join(__dirname, 'root', 'app'),
+    pkgName = 'package.json',
+    bkpName = '.package.json',
+    fixtures;
 
-var testRoot = path.join(__dirname, 'root', 'app'),
-    fixturesRoot = path.join(__dirname, 'fixtures'),
-    fixtures = {
-      "staging": fs.readFileSync(path.join(fixturesRoot, 'package-staging.json'), 'utf8'),
-      "base": fs.readFileSync(path.join(fixturesRoot, 'package-base.json'), 'utf8')
-    };
+fixtures = {
+  "staging": fs.readFileSync(path.join(fixturesRoot, 'package-staging.json'), 'utf8'),
+  "base": fs.readFileSync(path.join(fixturesRoot, 'package-base.json'), 'utf8')
+};
 
-describe('Penv', function () {
-
-  describe('#start() first: create backup', function () {
-    it('should exist', function () {
-      should.exist(penv.start);
+//
+// Helper Methods
+//
+function beginExec(env) {
+  it('should exist', function () {
+    should.exist(penv.start);
+  });
+  before(function (next) {
+    penv.config({
+        root: testRoot,
+        env: env
     });
-
-    before(function (next) {
-      penv.config({
-          root: testRoot,
-          env: 'staging'
-      });
-      penv.start(function (err) {
-        assert.ok(!err);
-        next();
-      });
-    });
-
-    it('backup package should exist', function () {
-      var backupFile = fs.readFileSync(path.join(testRoot, '.package.json'), 'utf8');
-      should.exist(backupFile);
-    });
-
-    it('should modify package.json', function () {
-      var packageFile = fs.readFileSync(path.join(testRoot, 'package.json'), 'utf8');
-      assert.deepEqual(JSON.parse(fixtures.staging), JSON.parse(packageFile));
+    penv.start(function (err) {
+      assert.ok(!err);
+      next();
     });
   });
+}
 
+function checkFileExist(str, fileName) {
+  it(str, function () {
+    var file = fs.readFileSync(path.join(testRoot, fileName), 'utf8');
+    should.exist(file);
+  });
+}
+
+function checkFixtureMatch(str, fileName, matchName) {
+  it(str, function () {
+    var file = fs.readFileSync(path.join(testRoot, fileName), 'utf8');
+    assert.deepEqual(JSON.parse(matchName), JSON.parse(file));
+  });
+}
+
+//
+// Tests
+//
+describe('Penv', function () {
+  describe('#start() first: create backup', function () {
+    beginExec('staging');
+    checkFileExist('backup package should exist', bkpName);
+    checkFixtureMatch('package.json should be modified', pkgName, fixtures.staging);
+  });
   describe('#start() second: use backup', function () {
-    it('should exist', function () {
-      should.exist(penv.start);
-    });
-
-    before(function (next) {
-      penv.config({
-          root: testRoot,
-          env: 'base'
-      });
-      penv.start(function (err) {
-        assert.ok(!err);
-        next();
-      });
-    });
-
+    beginExec('base');
+    checkFixtureMatch('package.json should be reset', pkgName, fixtures.base);
     after(function (next) {
       rimraf(path.join(testRoot, '.package.json'), next)
     });
-
-    it('should reset package.json', function () {
-      var packageFile = fs.readFileSync(path.join(testRoot, 'package.json'), 'utf8');
-      assert.deepEqual(JSON.parse(fixtures.base), JSON.parse(packageFile));
-    });
   });
-
 });

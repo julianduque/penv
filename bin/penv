@@ -1,11 +1,9 @@
 #!/usr/bin/env node
 
-var colors = require('colors'),
-	penv = require('../lib/penv');
+var eyes   = require('eyes'),
+  	penv   = require('../lib/penv');
 
 penv.start(function (err, file) {
-  if (err) {
-    return console.log(err);
-  }
-  console.log('success: '.green + ' customized ' + file.grey + ' created');
+  if (err) { return eyes.inspect(err); }
+  console.log('success: ' + ' customized ' + file);
 });

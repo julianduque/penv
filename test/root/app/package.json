@@ -1,12 +1,13 @@
 {
-  "devDependencies": {
-    "vows": "0.5.x",
-    "request": "2.1.x"
+  "description": "a simple zero-configuration command-line http server",
+  "name": "http-server",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nodejitsu/http-server.git"
   },
-  "keywords": [
-    "cli",
-    "http",
-    "server"
+  "bundledDependencies": [
+    "union",
+    "ecstatic"
   ],
   "scripts": {
     "start": "node ./bin/http-server",
@@ -14,16 +15,32 @@
     "predeploy": "echo This will be run before deploying the app",
     "postdeploy": "echo This will be run after deploying the app"
   },
-  "license": "MIT",
-  "bundledDependencies": [
-    "union",
-    "ecstatic"
-  ],
+  "engines": {
+    "node": ">=0.6"
+  },
   "analyze": false,
-  "main": "./lib/http-server",
-  "description": "a simple zero-configuration command-line http server",
-  "name": "http-server",
   "author": "Nodejitsu <support@nodejitsu.com>",
+  "license": "MIT",
+  "preferGlobal": true,
+  "version": "0.3.0",
+  "devDependencies": {
+    "vows": "0.5.x",
+    "request": "2.1.x"
+  },
+  "contributors": [
+    {
+      "name": "Marak Squires",
+      "email": "marak@nodejitsu.com"
+    }
+  ],
+  "bin": {
+    "http-server": "./bin/http-server"
+  },
+  "keywords": [
+    "cli",
+    "http",
+    "server"
+  ],
   "dependencies": {
     "colors": "*",
     "flatiron": "0.1.x",
@@ -32,22 +49,5 @@
     "ecstatic": "0.1.x",
     "plates": "https://github.com/flatiron/plates/tarball/master"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/nodejitsu/http-server.git"
-  },
-  "contributors": [
-    {
-      "name": "Marak Squires",
-      "email": "marak@nodejitsu.com"
-    }
-  ],
-  "engines": {
-    "node": ">=0.6"
-  },
-  "version": "0.3.0",
-  "bin": {
-    "http-server": "./bin/http-server"
-  },
-  "preferGlobal": true
+  "main": "./lib/http-server"
 }
