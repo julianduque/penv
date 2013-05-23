@@ -1,0 +1,36 @@
+{
+  "name": "penv",
+  "version": "0.1.0",
+  "description": "A package.json enviroment manager",
+  "author": "Julian Duque <julianduquej@gmail.com>",
+  "contributors": [
+    {
+      "name": "Julian Duque",
+      "email": "julianduquej@gmail.com"
+    },
+    {
+      "name": "Jarid Margolin",
+      "email": "jaridmargolin@gmail.com"
+    }
+  ],
+  "preferGlobal": true,
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/julianduque/penv"
+  },
+  "bin": "./bin/penv",
+  "main": "./bin/penv",
+  "license": "MIT",
+  "scripts": {
+    "test": "make test"
+  },
+  "dependencies": {
+    "utile": "~0.2.0",
+    "eyes": "~0.1.8"
+  },
+  "devDependencies": {
+    "mocha": "~1.9.0",
+    "chai": "~1.6.0",
+    "rimraf": "~2.1.4"
+  }
+}
