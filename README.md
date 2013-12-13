@@ -62,6 +62,9 @@ And you will have a customized `package.json` like the following:
   "version": "0.0.1",
   "engines": {
     "node": "0.8.x"
+  },
+  "env": {
+    "NODE_ENV": "staging"
   }
 }
 ```
