@@ -4,13 +4,13 @@
  * (C) 2013 Julián Duque
  * MIT LICENCE
  *
- */ 
+ */
 var should = require('chai').should(),
-  	assert = require('chai').assert,
-  	rimraf = require('rimraf'),
+    assert = require('chai').assert,
+    rimraf = require('rimraf'),
     penv   = require('../lib/penv'),
-  	path   = require('path'),
-  	fs     = require('fs');
+    path   = require('path'),
+    fs     = require('fs');
 
 //
 // Test Vars
@@ -52,10 +52,10 @@ function checkFileExist(str, fileName) {
   });
 }
 
-function checkFixtureMatch(str, fileName, matchName) {
+function checkFixtureMatch(str, fileName, matchFile) {
   it(str, function () {
     var file = fs.readFileSync(path.join(testRoot, fileName), 'utf8');
-    assert.deepEqual(JSON.parse(matchName), JSON.parse(file));
+    assert.deepEqual(JSON.parse(matchFile), JSON.parse(file));
   });
 }
 

@@ -54,5 +54,8 @@
   "domains": [
     "staging.myawesomedomain.com",
     "www.staging.myawesomedomain.com"
-  ]
+  ],
+  "env": {
+    "NODE_ENV": "staging"
+  }
 }
