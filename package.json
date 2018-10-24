@@ -14,9 +14,9 @@
     }
   ],
   "preferGlobal": true,
-  "repository" : {
-    "type" : "git",
-    "url" : "https://github.com/julianduque/penv"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/julianduque/penv"
   },
   "bin": "./bin/penv",
   "main": "./bin/penv",
@@ -25,8 +25,9 @@
     "test": "make test"
   },
   "dependencies": {
-    "utile": "~0.2.0",
-    "eyes": "~0.1.8"
+    "eyes": "~0.1.8",
+    "lodash.merge": "^4.6.1",
+    "utile": "~0.2.0"
   },
   "devDependencies": {
     "mocha": "~1.9.0",

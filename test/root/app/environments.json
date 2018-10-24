@@ -4,13 +4,19 @@
     "domains": [
       "myawesomedomain.com",
       "www.myawesomedomain.com"
-    ]
+    ],
+    "dependencies": {
+      "colors": "1"
+    }
   },
   "staging": {
     "subdomain": "staging-awesomeapp",
     "domains": [
       "staging.myawesomedomain.com",
       "www.staging.myawesomedomain.com"
-    ]
+    ],
+    "dependencies": {
+      "colors": "2"
+    }
   }
 }
