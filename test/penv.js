@@ -2,7 +2,7 @@
  * penv.js test: tests for penv.js
  *
  * (C) 2013 Julián Duque
- * MIT LICENCE
+ * MIT LICENSE
  *
  */
 var should = require('chai').should(),

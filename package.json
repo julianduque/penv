@@ -27,11 +27,11 @@
   "dependencies": {
     "eyes": "~0.1.8",
     "lodash.merge": "^4.6.1",
-    "utile": "~0.2.0"
+    "utile": "^0.3.0"
   },
   "devDependencies": {
-    "mocha": "~1.9.0",
-    "chai": "~1.6.0",
-    "rimraf": "~2.1.4"
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "rimraf": "^2.6.2"
   }
 }

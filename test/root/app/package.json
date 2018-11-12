@@ -12,7 +12,7 @@
     "postdeploy": "echo This will be run after deploying the app"
   },
   "dependencies": {
-    "colors": "*",
+    "colors": "2",
     "flatiron": "0.1.x",
     "optimist": "0.2.x",
     "union": "0.1.x",
